@@ -33,9 +33,20 @@ function dealToDealer(){
     dealerHand = dealerHand + randomNumberTo11();
 }
 
+// Player Stands - Alerted to player in case player chooses to stand at any point during the game.
+function playerStands(){
+    alert("You chose to stand with " + playerHand + ".");
+}
+
+
 function nextPlayerGame(){
     if(playerHand === 21){
-        alert("Your hand is now " + playerHand + ". " + "The dealer will play now.");
+        alert("Your hand is now " + playerHand + ". " + "The dealer will pull his next cards now.");
+        dealToDealer();
+        while (dealerHand < 17 ) {
+            alert("You stand with " + playerHand + ". " + " Dealers hand is " + dealerHand + ". Dealer will pull another card.");
+        dealToDealer();
+        }
     } else {
         var playersChoice = confirm("Your hand is " + playerHand + ". " + "The dealer shows " + dealerHand + "." + "  Select OK for HIT or Cancel for STAND.");
     } if(playersChoice){
@@ -45,6 +56,8 @@ function nextPlayerGame(){
         } else {
             nextPlayerGame();
         } 
+    } else {
+        playerStands();
     }
 }
 
@@ -54,15 +67,19 @@ function firstPlayerGame(){
         alert("Your initial hand was 21, you have won the game. Congratulations!");
     } else {
         var playersChoice = confirm("Your hand is " + playerHand + ". " + "The dealer shows " + dealerHand + "." + "  Select OK for HIT or Cancel for STAND.");
-    } if(playersChoice){
+    }
+    if(playersChoice){
         dealToPlayer11();
         if(playerHand > 21){
             alert("Your hand is now " + playerHand + ". You have lost the game. ");
         } else {
             nextPlayerGame();
         } 
+    } else {
+        playerStands();
     }
 }
+
 
 
 if(initialConfirm){
@@ -70,7 +87,6 @@ if(initialConfirm){
     dealToDealer();
     firstPlayerGame();
 }
-
 
 
 
