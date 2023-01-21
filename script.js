@@ -35,24 +35,35 @@ function dealToDealer(){
 
 // Player Stands - Alerted to player in case player chooses to stand at any point during the game.
 function playerStands(){
-    alert("You chose to stand with " + playerHand + ".");
+   if(playerHand === 21) {
+    alert("You're hand is " + playerHand + "." )
+   }
+   dealToDealer();
+   if(dealerHand > 21){
+    alert("Dealers hand is " + dealerHand + ". You're hand is " + playerHand + ". You won!!")
+    return;
+   }
+   if(dealerHand > playerHand){
+    alert("Dealers hand is " + dealerHand + ". You're hand is  " + playerHand +  ". You Lost!!");
+    return;
+   }
+   if(dealerHand < 17 && dealerHand < playerHand){
+    alert("Dealers hand is " + dealerHand +  ". You're hand is " + playerHand +  ". Dealer will pull his next card! ");
+    playerStands();
+   }
 }
 
 
 function nextPlayerGame(){
     if(playerHand === 21){
-        alert("Your hand is now " + playerHand + ". " + "The dealer will pull his next cards now.");
-        dealToDealer();
-        while (dealerHand < 17 ) {
-            alert("You stand with " + playerHand + ". " + " Dealers hand is " + dealerHand + ". Dealer will pull another card.");
-        dealToDealer();
-        }
+        playerStands();
+        return;
     } else {
         var playersChoice = confirm("Your hand is " + playerHand + ". " + "The dealer shows " + dealerHand + "." + "  Select OK for HIT or Cancel for STAND.");
     } if(playersChoice){
         dealToPlayer11();
         if(playerHand > 21){
-            alert("Your hand is now " + playerHand + ". You have lost the game. ");
+            alert("Your hand is " + playerHand + ". You have lost the game. ");
         } else {
             nextPlayerGame();
         } 
@@ -65,13 +76,14 @@ function nextPlayerGame(){
 function firstPlayerGame(){
     if(playerHand === 21){
         alert("Your initial hand was 21, you have won the game. Congratulations!");
+        return;
     } else {
-        var playersChoice = confirm("Your hand is " + playerHand + ". " + "The dealer shows " + dealerHand + "." + "  Select OK for HIT or Cancel for STAND.");
+        var playersChoice = confirm("Your initital hand is " + playerHand + ". " + "The dealer shows " + dealerHand + "." + "  Select OK for HIT or Cancel for STAND.");
     }
     if(playersChoice){
         dealToPlayer11();
         if(playerHand > 21){
-            alert("Your hand is now " + playerHand + ". You have lost the game. ");
+            alert("Your hand is " + playerHand + ". You have lost the game. ");
         } else {
             nextPlayerGame();
         } 
@@ -87,36 +99,3 @@ if(initialConfirm){
     dealToDealer();
     firstPlayerGame();
 }
-
-
-
-
-
-
-
-
-// function playerHit()
-
-// // If the player hits, add a number between 2 and 11.
-// // If the player goes over 21 the lose. 
-
-   
-
-     
-// If the player has 21, stay for them.
-     
-// Repeat until they choose to stay or they bust
-     
-// Once player stays add a number between 2 and 11 to the dealer's hand.
-     
-// If dealer number is less than 17 add another number
-     
-// Repeat until the number is over over 17 but less than 21, or if the dealer goes over 21
-     
-// If dealer goes over 21 they lose.
-  
-// Once dealer stops, and neither player bust, compare each number to 21. Whoever is closer wins!
-
-// Pseudocode the outline of your game before you write any code.
-
-// Create functions if you begin to repeat yourself.
