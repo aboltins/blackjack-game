@@ -33,18 +33,54 @@ function dealToDealer(){
     dealerHand = dealerHand + randomNumberTo11();
 }
 
-if(initialConfirm){
-    dealToPlayer21();
-    dealToDealer();
-    // If the player has 21 they win! 
+function nextPlayerGame(){
+    if(playerHand === 21){
+        alert("Your hand is now " + playerHand + ". " + "The dealer will play now.");
+    } else {
+        var playersChoice = confirm("Your hand is " + playerHand + ". " + "The dealer shows " + dealerHand + "." + "  Select OK for HIT or Cancel for STAND.");
+    } if(playersChoice){
+        dealToPlayer11();
+        if(playerHand > 21){
+            alert("Your hand is now " + playerHand + ". You have lost the game. ");
+        } else {
+            nextPlayerGame();
+        } 
+    }
+}
+
+
+function firstPlayerGame(){
     if(playerHand === 21){
         alert("Your initial hand was 21, you have won the game. Congratulations!");
     } else {
-        confirm("Your hand is " + playerHand + ". " + "The dealer shows " + dealerHand + "." + "  Select OK for HIT or Cancel for STAND.");
+        var playersChoice = confirm("Your hand is " + playerHand + ". " + "The dealer shows " + dealerHand + "." + "  Select OK for HIT or Cancel for STAND.");
+    } if(playersChoice){
+        dealToPlayer11();
+        if(playerHand > 21){
+            alert("Your hand is now " + playerHand + ". You have lost the game. ");
+        } else {
+            nextPlayerGame();
+        } 
     }
-    }
+}
+
+
+if(initialConfirm){
+    dealToPlayer21();
+    dealToDealer();
+    firstPlayerGame();
+}
+
+
+
+
+
+
+
+
 
 // function playerHit()
+
 // // If the player hits, add a number between 2 and 11.
 // // If the player goes over 21 the lose. 
 
