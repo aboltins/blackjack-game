@@ -2,12 +2,25 @@
 // Create a simple blackjack game with the following properties:
 var playerHand = 0;
 var dealerHand = 0;
+var initialPrompt = confirm("Would you like to play a game of Blackjack against the almighty computer?")
+
+// Generates random number between 4 and 21 inclusive.
+let randomInitialPlayerCard = function (min, max) {
+    min = Math.ceil(4);
+    max = Math.floor(21);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 // Deals the player a random number between 4 and 21 inclusive.
 function dealToPlayer(){
-// If the player has 21 they win! 
-
+    if(initialPrompt){
+        alert("Your hand is " + randomInitialPlayerCard());
+    }
 }
+
+dealToPlayer();
+   
+// If the player has 21 they win! 
 
    
 // Deals a random number between 2 and 11 inclusive to the dealer.
