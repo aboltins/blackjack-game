@@ -2,17 +2,17 @@
 // Global variables
 var playerHand = 0;
 var dealerHand = 0;
-var initialPrompt = confirm("Would you like to play a game of Blackjack against the almighty computer?")
+var initialConfirm = confirm("Would you like to play a game of Blackjack against the almighty computer?")
 
 // Generates random number between 4 and 21 inclusive.
-let randomInitialPlayerCard = function (min, max) {
+let randomNumberTo21 = function (min, max) {
     min = Math.ceil(4);
     max = Math.floor(21);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 // Generates random number between 2 and 11 inclusive.
-let randomInitialDealerCard = function (min, max) {
+let randomNumberTo11 = function (min, max) {
     min = Math.ceil(2);
     max = Math.floor(11);
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -20,12 +20,14 @@ let randomInitialDealerCard = function (min, max) {
 
 // Deals the player a random number between 4 and 21 inclusive.
 function dealToPlayer(){
-    if(initialPrompt){
-        confirm("Your hand is " + randomInitialPlayerCard() + ". " + "The dealer shows " + randomInitialDealerCard() + "." + "  Select OK for HIT or Cancel for STAND.");
+    if(initialConfirm){
+        playerHand = playerHand + randomNumberTo21();
+        dealerHand = dealerHand + randomNumberTo11();
+        confirm("Your hand is " + playerHand + ". " + "The dealer shows " + dealerHand + "." + "  Select OK for HIT or Cancel for STAND.");
     }
 }
 
-// Calls the deal to Player function.
+// Calls deal to Player function.
 dealToPlayer();
    
 // If the player has 21 they win! 
