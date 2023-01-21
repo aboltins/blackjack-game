@@ -40,14 +40,18 @@ function playerStands(){
    }
    dealToDealer();
    if(dealerHand > 21){
-    alert("Dealers hand is " + dealerHand + ". You're hand is " + playerHand + ". You won!!")
+    alert("Dealers hand is " + dealerHand + ". You're hand is " + playerHand + ". You have beaten the almighty Computer!!")
     return;
    }
    if(dealerHand > playerHand){
-    alert("Dealers hand is " + dealerHand + ". You're hand is  " + playerHand +  ". You Lost!!");
+    alert("Dealers hand is " + dealerHand + ". You're hand is  " + playerHand +  ". You have lost to the almighty Computer!!");
     return;
    }
-   if(dealerHand < 17 && dealerHand < playerHand){
+   if(dealerHand === playerHand && dealerHand > 17 ){
+    alert("Dealers hand is " + dealerHand + ". You're hand is  " + playerHand +  ". You have tied with the almighty Computer!!");
+    return;
+   }
+   if(dealerHand < 17 && dealerHand <= playerHand){
     alert("Dealers hand is " + dealerHand +  ". You're hand is " + playerHand +  ". Dealer will pull his next card! ");
     playerStands();
    }
