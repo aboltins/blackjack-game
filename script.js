@@ -19,33 +19,35 @@ let randomNumberTo11 = function (min, max) {
 }
 
 // Deals the player a random number between 4 and 21 inclusive.
-function dealToPlayer(){
-    if(initialConfirm){
-        playerHand = playerHand + randomNumberTo21();
-        dealerHand = dealerHand + randomNumberTo11();
+function dealToPlayer21(){
+    playerHand = playerHand + randomNumberTo21();      
+}
+
+// Deals the player a random number between 4 and 11 inclusive.
+function dealToPlayer11(){
+    playerHand = playerHand + randomNumberTo11();
+}
+
+// Deals the dealer a random number between 2 and 11 inclusive.
+function dealToDealer(){
+    dealerHand = dealerHand + randomNumberTo11();
+}
+
+if(initialConfirm){
+    dealToPlayer21();
+    dealToDealer();
+    // If the player has 21 they win! 
+    if(playerHand === 21){
+        alert("Your initial hand was 21, you have won the game. Congratulations!");
+    } else {
         confirm("Your hand is " + playerHand + ". " + "The dealer shows " + dealerHand + "." + "  Select OK for HIT or Cancel for STAND.");
     }
-}
+    }
 
-// Calls deal to Player function.
-dealToPlayer();
-   
-// If the player has 21 they win! 
+// function playerHit()
+// // If the player hits, add a number between 2 and 11.
+// // If the player goes over 21 the lose. 
 
-   
-// Deals a random number between 2 and 11 inclusive to the dealer.
-// function dealToDealer(){
-//     if(initialPrompt){
-//         randomInitialDealerCard();
-//     }
-// }
-
-
-
-function playerHit(){
-// If the player hits, add a number between 2 and 11.
-// If the player goes over 21 the lose. 
-}
    
 
      
